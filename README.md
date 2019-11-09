@@ -4,5 +4,5 @@ Examples on how to write 'parameterized' tests in Rust with <a href="https://git
 
 Current examples:
 
-* :watermelon: <a href="fruits">Fruits</a>: extended example from the <a href="https://github.com/foresterre/parameterized">parameterized</a> readme.
+* :watermelon: <a href="fruits/src/lib.rs">Fruits</a>: extended example from the <a href="https://github.com/foresterre/parameterized">parameterized</a> readme.
 * ...
