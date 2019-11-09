@@ -1,4 +1,4 @@
-# GitHub Actions workflow: CI for parameterized
+# GitHub Actions workflow: CI for parameterized-examples
 #
 # based on: https://github.com/BurntSushi/bstr/blob/master/.github/workflows/ci.yml
 # which is licensed under Apache License, Version 2.0 or MIT license
@@ -61,13 +61,17 @@ jobs:
         with:
           rust-version: ${{ matrix.rust }}
 
-      # build
-      - name: build all workspace crates
-        run: cargo build --verbose --all
+      # install: clippy
+      - name: install component(clippy)
+        run: rustup component add clippy
 
       # check/clippy
       - name: build all workspace crates
-        run: cargo clippy --verbose --all --profile test
+        run: cargo clippy --verbose --all --profile test -- -D warnings
+
+      # build
+      - name: build all workspace crates
+        run: cargo build --verbose --all
 
       # tests
       - name: run all test cases
