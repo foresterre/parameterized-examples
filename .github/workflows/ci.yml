@@ -20,7 +20,7 @@ jobs:
           # pinned rust version :: ubuntu
           - build: pinned
             os: ubuntu-18.04
-            rust: 1.36.0
+            rust: 1.38.0
 
           # latest rust stable :: ubuntu
           - build: stable
@@ -51,9 +51,7 @@ jobs:
     steps:
       # checkout
       - name: checkout repository
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2
 
       # install: rust
       - name: install Rust
@@ -77,14 +75,32 @@ jobs:
       - name: run all test cases
         run: cargo test --all
 
+  msrv:
+    name: msrv
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+                  
+      - name: Install Rust
+        uses: hecrj/setup-rust-action@v1
+        with:
+          rust-version: stable
+
+      - name: Install cargo-msrv
+        run: cargo install cargo-msrv
+
+      - name: Check msrv
+        run: |
+          cargo msrv verify
+
   rustfmt:
     name: rustfmt
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
+        uses: actions/checkout@v2
+
       - name: Install Rust
         uses: hecrj/setup-rust-action@v1
         with:
