@@ -92,7 +92,7 @@ jobs:
 
       - name: Check msrv
         run: |
-          cargo msrv verify
+          cargo msrv --min 1.38.0
 
   rustfmt:
     name: rustfmt
